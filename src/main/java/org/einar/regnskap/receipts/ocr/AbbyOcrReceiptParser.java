@@ -111,7 +111,7 @@ public class AbbyOcrReceiptParser implements ReceiptParser {
         //new AbbyOcrReceiptParser().parseFromFile("kvitteringJoker_1");
         //new AbbyOcrReceiptParser().parseFromFile("resultat3");
         //new AbbyOcrReceiptParser().parseFromFile("kvitteringKiwi_5");
-        new AbbyOcrReceiptParser().parseFromFile("kvitteringREMA1000_2_test");
+        new AbbyOcrReceiptParser().parseFromFile("receipts/kvitteringREMA1000_2_test");
     }
 
 }

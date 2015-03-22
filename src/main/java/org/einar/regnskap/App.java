@@ -27,8 +27,8 @@ public class App {
         //model.addTransactions(TransactionReader.read("transaksjoner 2013-2.csv", transactionParser));
         //model.addTransactions(TransactionReader.read("transaksjoner 2013-3.csv", transactionParser));
         //model.addTransactions(TransactionReader.read("transaksjoner 2013-4.csv", transactionParser));
-        model.addTransactions(TransactionReader.read("transaksjoner 2014-01-01_2014-04-08.csv", transactionParser));
-        model.addTransactions(TransactionReader.read("transaksjoner 2014-04-08_2014-05-11.csv", transactionParser));
+        model.addTransactions(TransactionReader.read("transactions/transaksjoner 2014-01-01_2014-04-08.csv", transactionParser));
+        model.addTransactions(TransactionReader.read("transactions/transaksjoner 2014-04-08_2014-05-11.csv", transactionParser));
 
         return model;
     }
