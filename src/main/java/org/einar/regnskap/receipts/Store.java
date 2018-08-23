@@ -1,38 +1,32 @@
 package org.einar.regnskap.receipts;
 
-/**
- * Created by
- * User: einahage
- * Date: 2/16/14
- * Time: 8:26 PM
- */
 public class Store {
+    
+    private final String chainName;
+    private final String storeName;
 
-    private final String name;
-    private final String department;
-
-    public Store(String name) {
-        this(name, null);
+    public Store(String chainName) {
+        this(chainName, null);
     }
 
-    public Store(String name, String department) {
-        this.name = name;
-        this.department = department;
+    public Store(String chainName, String storeName) {
+        this.chainName = chainName;
+        this.storeName = storeName;
     }
 
     @Override
     public String toString() {
         return "Store{" +
-                "name='" + name + '\'' +
-                "department='" + department + '\'' +
+                "chainName='" + chainName + '\'' +
+                "storeName='" + storeName + '\'' +
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getChainName() {
+        return chainName;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getStoreName() {
+        return storeName;
     }
 }

@@ -1,20 +1,16 @@
 package org.einar.regnskap.gui;
 
-import org.einar.regnskap.Transaction;
+import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.einar.regnskap.transactions.Transaction;
 import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
-
-import javax.swing.*;
-import java.awt.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 
 public class TransactionTableModelTest {
 

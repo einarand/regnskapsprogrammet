@@ -1,5 +1,6 @@
-package org.einar.regnskap;
+package org.einar.regnskap.transactions;
 
+import org.einar.regnskap.Category;
 import org.einar.regnskap.receipts.Price;
 
 import java.util.ArrayList;

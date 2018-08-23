@@ -2,7 +2,7 @@ package org.einar.regnskap.gui;
 
 import org.einar.regnskap.Category;
 import org.einar.regnskap.Model;
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
 import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
@@ -12,17 +12,18 @@ import org.joda.time.format.DateTimeFormat;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 public class MainFrame extends JFrame {
 
-    public MainFrame(Model model) {
+    private final int YEAR = 2015;
+    private final int MONTHS = 9;
 
-        int year = 2014;
+    public MainFrame(Model model) {
 
         JTabbedPane tabbedPane = new JTabbedPane();
         setContentPane(tabbedPane);
@@ -48,9 +49,11 @@ public class MainFrame extends JFrame {
         overviewPanel.add(new JLabel("Result"));
 
 
-        DateTime date = DateTimeFormat.forPattern("dd.MM.yyyy").parseDateTime("01.01." + year);
-        for (int i = 1; i <= 12; i++) {
-            overviewPanel.add(new JLabel(year + "-" + i));
+        DateTime date = DateTimeFormat.forPattern("dd.MM.yyyy").parseDateTime("01.01." + YEAR);
+
+        Price yearlyResult = Price.ZERO;
+        for (int i = 1; i <= MONTHS; i++) {
+            overviewPanel.add(new JLabel(YEAR + "-" + i));
             Price sum = Price.ZERO;
             Price result = Price.ZERO;
             for (Category c : categories) {
@@ -68,6 +71,7 @@ public class MainFrame extends JFrame {
 
                 overviewPanel.add(new JLabel("" + amount));
             }
+            yearlyResult = yearlyResult.add(result);
             date = date.plus(Months.ONE);
             overviewPanel.add(new JLabel("" + sum));
             overviewPanel.add(new JLabel("" + result));
@@ -90,6 +94,7 @@ public class MainFrame extends JFrame {
             }
         }
         overviewPanel.add(new JLabel("" + sumAvg));
+        overviewPanel.add(new JLabel("" + yearlyResult));
 
         JPanel allPanel = createTransactionTablePanel(model.getAllTransactions());
         tabbedPane.addTab("Alle", allPanel);
@@ -116,7 +121,9 @@ public class MainFrame extends JFrame {
         TransactionTableModel model = new TransactionTableModel(transactions);
         final JTable allTable = new JTable(model);
         allTable.getColumnModel().getColumn(0).setCellRenderer(tableCellRenderer);
+
         allTable.setAutoCreateRowSorter(true);
+        sortTable(allTable, SortOrder.DESCENDING);
 
         allTable.setPreferredScrollableViewportSize(new Dimension(1000, 500));
         allTable.setFillsViewportHeight(true);
@@ -128,6 +135,15 @@ public class MainFrame extends JFrame {
         return allPanel;
     }
 
+    private void sortTable(JTable table, SortOrder order) {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+        table.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<RowSorter.SortKey>();
+        int columnIndexToSort = 0;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, order));
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+    }
 
 
 }

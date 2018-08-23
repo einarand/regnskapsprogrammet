@@ -1,7 +1,7 @@
 package org.einar.regnskap.receipts.db;
 
 import org.einar.regnskap.receipts.Item;
-import org.einar.regnskap.receipts.model.Items;
+import org.einar.regnskap.receipts.model.ItemStore;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by einahage on 12/04/14.
  */
-public class ItemsInMemoryStore implements Items {
+public class ItemsInMemoryStore implements ItemStore {
 
     private final Set<Item> items = new HashSet<Item>();
 

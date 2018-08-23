@@ -3,6 +3,7 @@ package org.einar.regnskap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import org.einar.regnskap.receipts.Price;
+import org.einar.regnskap.transactions.Transaction;
 import org.joda.time.Interval;
 
 import java.util.Collection;
@@ -20,7 +21,6 @@ public class ModelImpl implements Model {
 
     public void addTransactions(Collection<Transaction> transactions) {
         categorize(transactions);
-        //categorizedTransactions.removeAll(Category.INNSKUDD);
     }
 
     private void categorize(Collection<Transaction> transactions) {
@@ -28,7 +28,7 @@ public class ModelImpl implements Model {
             Category c = categorize(t);
             boolean increased = categorizedTransactions.put(c, t);
             if (!increased) {
-                System.err.println("Transaction " + t + " already exists");
+                System.err.println("Suspected duplicate: " + t);
             }
         }
     }

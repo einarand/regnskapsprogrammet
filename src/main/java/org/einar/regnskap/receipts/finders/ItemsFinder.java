@@ -8,12 +8,6 @@ import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by
- * User: einahage
- * Date: 2/18/14
- * Time: 11:37 PM
- */
 public class ItemsFinder {
 
     private static final Pattern pattern = Pattern.compile(

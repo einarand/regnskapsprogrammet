@@ -4,16 +4,10 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import org.einar.regnskap.Category;
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
 
 import java.util.Collection;
 
-/**
- * Created by
- * User: einahage
- * Date: 2/15/14
- * Time: 3:02 PM
- */
 public class DBUpdater {
 
     public void insertCategories(Collection<Category> categories, DB db) {

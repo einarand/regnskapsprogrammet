@@ -1,6 +1,7 @@
 package org.einar.regnskap;
 
 import org.einar.regnskap.receipts.Price;
+import org.einar.regnskap.transactions.Transaction;
 import org.joda.time.Interval;
 
 import java.util.Collection;

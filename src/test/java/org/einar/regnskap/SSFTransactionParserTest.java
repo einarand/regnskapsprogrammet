@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.einar.regnskap.parser.SSFTransactionParser;
 import org.einar.regnskap.parser.TransactionParser;
 import org.einar.regnskap.receipts.Price;
+import org.einar.regnskap.transactions.Transaction;
 
 public class SSFTransactionParserTest extends TestCase {
 

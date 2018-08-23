@@ -4,7 +4,7 @@ import org.einar.regnskap.receipts.Item;
 import org.einar.regnskap.receipts.LineItem;
 import org.einar.regnskap.receipts.Price;
 import org.einar.regnskap.receipts.PriceFormatException;
-import org.einar.regnskap.receipts.model.Items;
+import org.einar.regnskap.receipts.model.ItemStore;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,14 +25,14 @@ public class LineItemPanel extends JPanel {
     private final UpperCaseTextField descTextField;
     private final JTextField priceTextField;
     private final JLabel totalPriceLabel;
-    private final Items items;
+    private final ItemStore items;
 
     private int quantity;
     private Price itemPrice;
 
     private static final int cellHeight = 25;
 
-    public LineItemPanel(Container parent, final Items items) {
+    public LineItemPanel(Container parent, final ItemStore items) {
         this.parent = parent;
         this.items = items;
         setLayout(new FlowLayout());
@@ -111,7 +111,7 @@ public class LineItemPanel extends JPanel {
         add(l);
     }
 
-    public LineItemPanel(LineItem lineItem, Container parent, Items items) {
+    public LineItemPanel(LineItem lineItem, Container parent, ItemStore items) {
         this(parent, items);
         qtyTextField.setText(String.valueOf(lineItem.getQuantity()));
         verifyQuantity();

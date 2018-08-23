@@ -1,10 +1,9 @@
-package org.einar.regnskap;
+package org.einar.regnskap.transactions;
 
 import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public final class Transaction implements Comparable {
 
@@ -16,10 +15,9 @@ public final class Transaction implements Comparable {
 	
 	public Transaction(DateTime date, String description, Price amount,
 			long reference, String account) {
-		if(amount == null) throw new IllegalArgumentException("Amount cannot be null");
         this.date = date;
 		this.description = description;
-		this.amount = amount;
+		this.amount = checkNotNull(amount);
 		this.reference = reference;
 		this.account = account;
 	}

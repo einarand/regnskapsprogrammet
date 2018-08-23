@@ -1,6 +1,6 @@
 package org.einar.regnskap.parser;
 
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
 import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

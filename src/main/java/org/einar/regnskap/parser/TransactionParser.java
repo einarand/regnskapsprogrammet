@@ -1,6 +1,6 @@
 package org.einar.regnskap.parser;
 
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
 
 import java.text.ParseException;
 

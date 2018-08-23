@@ -5,12 +5,6 @@ import org.joda.time.DateTime;
 import java.util.Collection;
 import java.util.LinkedList;
 
-/**
- * Created by
- * User: einahage
- * Date: 2/16/14
- * Time: 8:15 PM
- */
 public class Receipt {
 
     private final Store store;

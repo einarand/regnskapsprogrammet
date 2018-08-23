@@ -1,17 +1,13 @@
 package org.einar.regnskap.parser;
 
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
 import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TransactionToolTest {
 

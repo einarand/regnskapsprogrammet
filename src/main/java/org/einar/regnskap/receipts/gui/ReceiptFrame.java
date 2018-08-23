@@ -5,7 +5,7 @@ import org.einar.regnskap.receipts.LineItem;
 import org.einar.regnskap.receipts.Receipt;
 import org.einar.regnskap.receipts.Store;
 import org.einar.regnskap.receipts.db.ItemsInMemoryStore;
-import org.einar.regnskap.receipts.model.Items;
+import org.einar.regnskap.receipts.model.ItemStore;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,14 +31,14 @@ public class ReceiptFrame extends JFrame {
 
     public ReceiptFrame(Receipt receipt) {
 
-        final Items items = new ItemsInMemoryStore();
+        final ItemStore items = new ItemsInMemoryStore();
 
         container.setLayout(new MigLayout("wrap 1","[center]", "[center]"));
 
         JPanel storePanel = new JPanel();
         Store store = receipt.getStore();
-        storePanel.add(new JTextField(store != null ? store.getName() : "store"));
-        storePanel.add(new JTextField(store != null ? store.getDepartment() : "department"));
+        storePanel.add(new JTextField(store != null ? store.getChainName() : "store"));
+        storePanel.add(new JTextField(store != null ? store.getStoreName() : "department"));
         storePanel.add(new JTextField(receipt.getDateTime() != null ? receipt.getDateTime().toString("dd.MM.yyyy HH:mm") : "date"));
         container.add(storePanel, "span");
 

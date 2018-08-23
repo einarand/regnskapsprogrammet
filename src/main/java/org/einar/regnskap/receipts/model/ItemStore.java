@@ -3,7 +3,7 @@ package org.einar.regnskap.receipts.model;
 
 import org.einar.regnskap.receipts.Item;
 
-public interface Items {
+public interface ItemStore {
 
     Item getBestSuggestion(String description);
 

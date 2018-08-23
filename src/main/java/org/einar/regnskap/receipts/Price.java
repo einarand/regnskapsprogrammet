@@ -1,7 +1,6 @@
 package org.einar.regnskap.receipts;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.text.DecimalFormat;
 

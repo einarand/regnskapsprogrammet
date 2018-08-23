@@ -1,14 +1,12 @@
 package org.einar.regnskap.gui;
 
-import org.einar.regnskap.Transaction;
+import org.einar.regnskap.transactions.Transaction;
+import org.einar.regnskap.receipts.Price;
 import org.joda.time.DateTime;
 
 import javax.swing.table.AbstractTableModel;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 public final class TransactionTableModel extends AbstractTableModel {
@@ -40,7 +38,7 @@ public final class TransactionTableModel extends AbstractTableModel {
             case 2:
                 return double.class;
             case 4:
-                return long.class;
+                return Price.class;
             default:
                 return String.class;
         }
