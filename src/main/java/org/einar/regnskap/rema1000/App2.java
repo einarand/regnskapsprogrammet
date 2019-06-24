@@ -1,14 +1,14 @@
 package org.einar.regnskap.rema1000;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.Image;
+import java.awt.*;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 import org.einar.regnskap.rema1000.api.Transaction;
 import org.einar.regnskap.rema1000.api.TransactionRow;
@@ -33,14 +33,15 @@ public class App2 {
     public static void main(String... args) {
         org.apache.log4j.BasicConfigurator.configure();
         if (!refreshTokenValid()) {
-            loginWithOtp();
+            newLoginFlow();
         }
         TokenStore tokenVault = TokenStore.getInstance();
 
         RemaClient client = RemaClient.getInstance(BuildConfig.BASE_URL);
         List<Transaction> transactions = client.getTransactionHeads().getTransactions();
 
-        Transaction transaction = transactions.get(new Random().nextInt(transactions.size()));
+        //Transaction transaction = transactions.get(new Random().nextInt(transactions.size()));
+        Transaction transaction = transactions.get(transactions.size() - 2);
         long id = transaction.getId();
         List<TransactionRow> rows = client.getTransactionRows(id);
         Receipt receipt = ReceiptLogic.createRecieptFromTransactionRows(rows, id);
@@ -51,7 +52,8 @@ public class App2 {
     }
 
     private static void loadAndDisplayImage(TokenStore tokenVault, ProductItem item) {
-        MediaStoreToken mediaStoreToken = tokenVault.getMediaStoreToken() //TODO check if token is valid
+        MediaStoreToken mediaStoreToken = tokenVault.getMediaStoreToken()
+                                                    .filter(t -> !t.isExpired())
                                                     .orElseGet(() -> {
                                                         MediaStoreToken token = MediaStoreAuthClient.getInstance().getToken();
                                                         tokenVault.saveMediaStoreToken(token);
@@ -100,7 +102,7 @@ public class App2 {
         }
     }
 
-    private static void loginWithOtp() {
+    private static void deprecatedLoginWithOtp() {
         GetHeader getHeader = GetHeaderLogic.getInstance();
         RemaAuthClient authClient = RemaAuthClient.getInstance(BuildConfig.BASE_IDP_URL,
                                                                IDP_APP_CLIENT_TOKEN,
@@ -114,6 +116,10 @@ public class App2 {
         String code = authClient.getOauth2Token(tokenId);
         RemaAccessToken accessToken = authClient.getAccessToken(code);
         TokenStore.getInstance().saveAccessToken(accessToken);
+    }
+
+    public static void newLoginFlow() {
+        TokenStore.getInstance().saveAccessToken(NewRemaAuthFlow.accessToken());
     }
 
 }

@@ -5,7 +5,7 @@ public final class BuildConfig {
     public static final String APPLICATION_ID = "no.rema.bella";
     public static final String BASE_IDP_URL = "https://secure.bagus.io/";
     public static final String BASE_MEDIA_STORE_TOKEN_URL = "https://mediastore.tradesolution.no/";
-    public static final String BASE_URL = "https://api.rema.no/v1/";
+    public static final String BASE_URL = "https://esb-production-apim.azure-api.net/v1/"; //"https://api.rema.no/v1/";
     public static final boolean DEBUG = false;
     public static final boolean DEBUG_NETWORK_LOGS = false;
     public static final boolean ENABLE_LOGGING = false;
