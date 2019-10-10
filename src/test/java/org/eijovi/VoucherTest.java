@@ -1,5 +1,7 @@
 package org.eijovi;
 
+import org.eijovi.accounting.AccountingAccount;
+import org.eijovi.accounting.Voucher;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
@@ -12,9 +14,9 @@ public class VoucherTest {
 
     @Test
     public void test() {
-        Account kundefordringer = new Account("Kundefordringer");
-        Account salg = new Account("Salgsinntekter");
-        Account driftskonto = new Account("Driftskonto");
+        AccountingAccount kundefordringer = new AccountingAccount("Kundefordringer");
+        AccountingAccount salg = new AccountingAccount("Salgsinntekter");
+        AccountingAccount driftskonto = new AccountingAccount("Driftskonto");
 
         Voucher v1 = Voucher.builder()
                             .addEntry(kundefordringer, 1000)
@@ -30,7 +32,7 @@ public class VoucherTest {
         assertEquals(v1.sumCredit(), new BigDecimal(1000));
         assertEquals(v1.sumDebit(), new BigDecimal(1000));
 
-        assertEquals(kundefordringer.saldo(), ZERO);
+        assertEquals(kundefordringer.balance(), ZERO);
     }
 
 }

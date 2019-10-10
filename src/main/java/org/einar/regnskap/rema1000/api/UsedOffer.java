@@ -2,7 +2,7 @@ package org.einar.regnskap.rema1000.api;
 
 public class UsedOffer {
     private double discount;
-    private int discountPercent;
+    private double discountPercent;
     private String offerCode;
     private String offerDesc;
 
@@ -30,7 +30,7 @@ public class UsedOffer {
         this.discount = discount;
     }
 
-    public int getDiscountPercent() {
+    public double getDiscountPercent() {
         return this.discountPercent;
     }
 

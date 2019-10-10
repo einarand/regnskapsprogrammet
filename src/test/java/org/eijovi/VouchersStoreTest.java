@@ -1,6 +1,9 @@
 package org.eijovi;
 
 import org.apache.commons.lang3.StringUtils;
+import org.eijovi.accounting.AccountingAccount;
+import org.eijovi.accounting.Voucher;
+import org.eijovi.accounting.VouchersStore;
 import org.testng.annotations.Test;
 
 import java.time.Instant;
@@ -14,12 +17,12 @@ public class VouchersStoreTest {
 
     @Test
     public void testForAccount() {
-        Account bank = new Account("Bankinnskudd");
-        Account mat = new Account("Mat");
-        Account tobakk = new Account("Tobakk");
-        Account husholdning = new Account("Husholdning");
-        Account bensin = new Account("Bensin");
-        Account lonn = new Account("Lonn");
+        AccountingAccount bank = new AccountingAccount("Bankinnskudd");
+        AccountingAccount mat = new AccountingAccount("Mat");
+        AccountingAccount tobakk = new AccountingAccount("Tobakk");
+        AccountingAccount husholdning = new AccountingAccount("Husholdning");
+        AccountingAccount bensin = new AccountingAccount("Bensin");
+        AccountingAccount lonn = new AccountingAccount("Lønn");
 
         VouchersStore store = new VouchersStore.InMemoryVouchersStore();
 
@@ -44,7 +47,7 @@ public class VouchersStoreTest {
                            .addEntry(bensin, 600)
                            .build(Instant.now()));
 
-        Account account = bank;
+        AccountingAccount account = bank;
 
         List<Voucher> vouchers = store.list(account.id());
         //assertEquals(vouchers.size(), 3);

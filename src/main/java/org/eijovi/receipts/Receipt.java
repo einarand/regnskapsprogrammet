@@ -1,4 +1,4 @@
-package org.eijovi;
+package org.eijovi.receipts;
 
 public class Receipt {
 

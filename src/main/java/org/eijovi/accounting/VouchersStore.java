@@ -1,4 +1,4 @@
-package org.eijovi;
+package org.eijovi.accounting;
 
 import java.util.ArrayList;
 import java.util.List;

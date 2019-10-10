@@ -3,7 +3,7 @@ package org.einar.regnskap.rema1000.model;
 public class Offer {
     private String description;
     private double discount;
-    private int discountPercent;
+    private double discountPercent;
     private String offerCode;
 
     public String realmGet$description() {
@@ -14,7 +14,7 @@ public class Offer {
         return this.discount;
     }
 
-    public int realmGet$discountPercent() {
+    public double realmGet$discountPercent() {
         return this.discountPercent;
     }
 
@@ -30,7 +30,7 @@ public class Offer {
         this.discount = d;
     }
 
-    public void realmSet$discountPercent(int i) {
+    public void realmSet$discountPercent(double i) {
         this.discountPercent = i;
     }
 
@@ -38,7 +38,7 @@ public class Offer {
         this.offerCode = str;
     }
 
-    public Offer(String offerCode, String description, double discount, int discountPercent) {
+    public Offer(String offerCode, String description, double discount, double discountPercent) {
         realmSet$offerCode(offerCode);
         realmSet$description(description);
         realmSet$discount(discount);
@@ -69,7 +69,7 @@ public class Offer {
         realmSet$discount(discount);
     }
 
-    public int getDiscountPercent() {
+    public double getDiscountPercent() {
         return realmGet$discountPercent();
     }
 

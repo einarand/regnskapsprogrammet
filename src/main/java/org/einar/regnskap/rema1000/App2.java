@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -40,8 +41,8 @@ public class App2 {
         RemaClient client = RemaClient.getInstance(BuildConfig.BASE_URL);
         List<Transaction> transactions = client.getTransactionHeads().getTransactions();
 
-        //Transaction transaction = transactions.get(new Random().nextInt(transactions.size()));
-        Transaction transaction = transactions.get(transactions.size() - 2);
+        Transaction transaction = transactions.get(new Random().nextInt(transactions.size()));
+        //Transaction transaction = transactions.get(transactions.size() - 1);
         long id = transaction.getId();
         List<TransactionRow> rows = client.getTransactionRows(id);
         Receipt receipt = ReceiptLogic.createRecieptFromTransactionRows(rows, id);

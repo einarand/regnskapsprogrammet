@@ -1,4 +1,4 @@
-package org.eijovi;
+package org.eijovi.accounting;
 
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ public class AccountId {
     }
 
     public String toString() {
-        return value.toString();
+        return value;
     }
 
 }

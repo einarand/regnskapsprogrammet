@@ -1,4 +1,6 @@
-package org.eijovi;
+package org.eijovi.accounting;
+
+import org.eijovi.receipts.Receipt;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -10,12 +12,12 @@ public class Voucher {
 
     private final VoucherId id;
     private final Instant instant;
-    private final Type type;
+    private final VoucherType type;
     private final String description;
     private final List<Entry> entries;
     private final Optional<Receipt> receipt;
 
-    public Voucher(VoucherId id, Instant instant, Type type, String description, List<Entry> entries, Optional<Receipt> receipt) {
+    private Voucher(VoucherId id, Instant instant, VoucherType type, String description, List<Entry> entries, Optional<Receipt> receipt) {
         this.id = id;
         this.instant = instant;
         this.type = type;
@@ -36,7 +38,7 @@ public class Voucher {
         return instant;
     }
 
-    public Type getType() {
+    public VoucherType getType() {
         return type;
     }
 
@@ -98,19 +100,10 @@ public class Voucher {
         }
     }
 
-    public static class Type {
-
-        private String name;
-
-        public Type(String name) {
-            this.name = name;
-        }
-    }
-
     public static class Builder {
 
         private final VoucherId id;
-        private Type type;
+        private VoucherType type;
         private String description;
         private List<Entry> entries = new ArrayList<>();
         private Optional<Receipt> receipt = Optional.empty();
@@ -119,7 +112,7 @@ public class Voucher {
             id = VoucherId.randomId();
         }
 
-        public Builder type(Type type) {
+        public Builder type(VoucherType type) {
             this.type = type;
             return this;
         }
@@ -134,25 +127,25 @@ public class Voucher {
             return this;
         }
 
-        public Builder addEntry(Account account, BigDecimal amount) {
+        public Builder addEntry(AccountingAccount account, BigDecimal amount) {
             entries.add(new Entry(id, account.id(), amount));
             return this;
         }
 
-        public Builder addEntry(Account account, double amount) {
+        public Builder addEntry(AccountingAccount account, double amount) {
             return addEntry(account, new BigDecimal(amount));
         }
 
-        public Builder debet(Account account, double amount) {
+        public Builder debet(AccountingAccount account, double amount) {
             if (amount < 0) {
-                throw new IllegalArgumentException("Amount cannot be less than zero");
+                throw new IllegalArgumentException("Amount must be bigger than zero");
             }
             return addEntry(account, amount);
         }
 
-        public Builder credit(Account account, double amount) {
+        public Builder credit(AccountingAccount account, double amount) {
             if (amount < 0) {
-                throw new IllegalArgumentException("Amount cannot be less than zero");
+                throw new IllegalArgumentException("Amount must be bigger than zero");
             }
             return addEntry(account, -amount);
         }
@@ -161,7 +154,7 @@ public class Voucher {
             return new Voucher(
                     id,
                     instant == null ? Instant.now() : instant,
-                    type == null ? new Type("Manual") : type,
+                    type == null ? VoucherType.MANUAL : type,
                     description,
                     entries,
                     receipt
