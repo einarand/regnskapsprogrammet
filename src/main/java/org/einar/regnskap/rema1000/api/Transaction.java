@@ -1,5 +1,6 @@
 package org.einar.regnskap.rema1000.api;
 
+import java.time.Instant;
 import java.util.List;
 
 public class Transaction {
@@ -20,8 +21,8 @@ public class Transaction {
         this.id = id;
     }
 
-    public long getPurchaseDate() {
-        return this.purchaseDate;
+    public Instant getPurchaseDate() {
+        return Instant.ofEpochMilli(purchaseDate);
     }
 
     public void setPurchaseDate(long purchaseDate) {

@@ -1,11 +1,13 @@
 package org.einar.regnskap.rema1000.api;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.einar.regnskap.rema1000.model.FormatUtil;
 
 public class TransactionHeads {
+    private long purchaseDate;
     private double bonusTotal;
     private double discountTotal;
     private double purchaseTotal;
@@ -39,4 +41,7 @@ public class TransactionHeads {
         this.transactions = transactions;
     }
 
+    public Instant purchaseDate() {
+        return Instant.ofEpochMilli(purchaseDate);
+    }
 }

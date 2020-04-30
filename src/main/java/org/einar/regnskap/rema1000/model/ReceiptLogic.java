@@ -54,27 +54,6 @@ public class ReceiptLogic {
         return receiptSummaries;
     }
 
-    private static List<ReceiptSummary> createReceiptSummariesFromTransactions(List<ReceiptSummary> viewedReceiptSummaries, List<Transaction> transactions) {
-        List<ReceiptSummary> receiptSummaries = new ArrayList<>();
-        for (Transaction transaction : transactions) {
-            ReceiptSummary receiptSummary = new ReceiptSummary();
-            receiptSummary.setAmount(transaction.getAmount());
-            receiptSummary.setId(transaction.getId());
-            receiptSummary.setStoreId(transaction.getStoreId());
-            receiptSummary.setAmount(transaction.getAmount());
-            receiptSummary.setDiscount(transaction.getDiscount());
-            receiptSummary.setStoreName(transaction.getStoreName());
-            receiptSummary.setBonusPoints(transaction.getBonusPoints());
-            receiptSummary.setPurchaseDate(transaction.getPurchaseDate());
-            receiptSummary.setTransactionPayments(transaction.getTransactionPayments());
-            if (viewedReceiptSummaries.contains(receiptSummary)) {
-                receiptSummary.setHasViewed(true);
-            }
-            receiptSummaries.add(receiptSummary);
-        }
-        return receiptSummaries;
-    }
-
     public static Receipt createRecieptFromTransactionRows(List<TransactionRow> transactionRows, long transactionId) {
         Receipt receipt = new Receipt();
         receipt.setId(transactionId);
